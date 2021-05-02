@@ -9,6 +9,7 @@ import java.io.*
 import java.nio.charset.StandardCharsets
 
 class MainActivity : AppCompatActivity() {
+
     private lateinit var mBinding: ActivityMainBinding
 
     private fun loadNames() {
@@ -30,21 +31,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun initViews() {
-        mBinding.mainActivityButtonAdd.setOnClickListener { onAddButtonClicked() }
-    }
-
-    private fun initBinding() {
-        mBinding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(mBinding.root)
-    }
-
-    private fun initialize() {
-        initBinding()
-        initViews()
-        loadNames()
-    }
-
     private fun onAddButtonClicked() {
         try {
             openFileOutput("names.dat", MODE_APPEND).use {
@@ -62,6 +48,21 @@ class MainActivity : AppCompatActivity() {
         } catch (ex: IOException) {
             Toast.makeText(this, ex.message, Toast.LENGTH_LONG).show()
         }
+    }
+
+    private fun initViews() {
+        mBinding.mainActivityButtonAdd.setOnClickListener { onAddButtonClicked() }
+    }
+
+    private fun initBinding() {
+        mBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mBinding.root)
+    }
+
+    private fun initialize() {
+        initBinding()
+        initViews()
+        loadNames()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
